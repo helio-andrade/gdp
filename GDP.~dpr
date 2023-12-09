@@ -2,8 +2,7 @@ program GDP;
 
 uses
   Forms,
-  UPrincipal in 'UPrincipal.pas' {formPrincipal},
-  URotinasGenericas in 'icons\URotinasGenericas.pas';
+  UPrincipal in 'UPrincipal.pas' {formPrincipal};
 
 {$R *.res}
 

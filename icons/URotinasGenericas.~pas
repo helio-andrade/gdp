@@ -1,0 +1,63 @@
+unit URotinasGenericas;
+
+interface
+
+uses Windows, SysUtils, Forms, StdCtrls;
+
+function MostraData: string;
+function Confirma(const strTexto: string): Integer;
+function StrZero(const strValor: string; const intComprimento: Integer): string;
+
+procedure Mensagem(const strMensagem: string);
+
+implementation
+
+function MostraData: string;
+var
+  dtHoje: TDateTime;
+  intDiaSemana: Integer;
+  strDiaSemana: string;
+begin
+  dtHoje := Date;
+  intDiaSemana := DayOfWeek(dtHoje);
+  case intDiaSemana of
+    1: strDiaSemana := 'Domingo - ';
+    2: strDiaSemana := 'Segunda-feria - ';
+    3: strDiaSemana := 'Terça-feira - ';
+    4: strDiaSemana := 'Quarta-feira - ';
+    5: strDiaSemana := 'Quinta-feira - ';
+    6: strDiaSemana := 'Sexta-feira - ';
+    7: strDiaSemana := 'Sábado - ';
+  end;
+  Result := strDiaSemana + DateToStr(dtHoje);
+end;
+
+function Confirma(const strTexto: string): Integer;
+begin
+  Result := Application.MessageBox(PChar(strTexto), 'CONFIRMAÇÃO', MB_YESNO +
+    MB_DEFBUTTON2 + MB_ICONQUESTION);
+end;
+
+function StrZero(const strValor: string; const intComprimento: Integer): string;
+var
+  strZeros, strRetorno: string;
+  intTamanho, intContador: Integer;
+begin
+  intTamanho := Length(Trim(strValor));
+  strZeros := '';
+  for intContador := 1 to intComprimento do
+    strZeros := StrZeros + '0';
+  strRetorno := Copy(Trim(StrZeros) + Trim(strValor), intTamanho + 1,
+    intComprimento);
+  Result := strRetorno;
+end;
+
+procedure Mensagem(const strMensagem: string);
+begin
+  Application.MessageBox(PChar(strMensagem), 'MENSAGEM', MB_OK +
+    MB_ICONEXCLAMATION);
+end;
+
+
+end.
+ 
